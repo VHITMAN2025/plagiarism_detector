@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plagiarism Detector</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 700px;
+      color: white;
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 1rem;
+      resize: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      outline: none;
+    }
+
+    textarea::placeholder {
+      color: #ddd;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: #00c6ff;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #0072ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
+    }
+
+    .result {
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 15px;
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Plagiarism Detection</h1>
+    <form id="plagForm">
+      <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+      <button type="submit">Check for Plagiarism</button>
+    </form>
+    <div class="result" id="resultBox" style="display: none;">
+      <h3>Detection Result:</h3>
+      <p id="resultText">Loading...</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("plagForm");
+    const resultBox = document.getElementById("resultBox");
+    const resultText = document.getElementById("resultText");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const inputText = document.getElementById("inputText").value.trim();
+
+      if (!inputText) {
+        alert("Please enter some text first!");
+        return;
+      }
+
+      resultBox.style.display = "block";
+      resultText.innerText = "Checking for plagiarism...";
+
+      // Simulated delay and fake result (Replace this with your backend API call)
+      setTimeout(() => {
+        const fakeResult = "12% plagiarized — mostly matches found from online sources.";
+        resultText.innerText = fakeResult;
+      }, 2000);
+
+      /*
+      // Example: Replace this section with your actual API call
+      const response = await fetch("http://localhost:5000/detect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: inputText }),
+      });
+      const data = await response.json();
+      resultText.innerText = data.result;
+      */
+    });
+  </script>
+</body>
+</html>
